@@ -31,7 +31,7 @@ cwd=`pwd`
 if [ ! -e ${db}/.done ]; then
     mkdir -p ${db}
     cd ${db}
-    git clone https://github.com/nii-yamagishilab/VCC2020-database.git
+    git clone https://github.com/REDOWAN038/Dataset.git
     
     cd VCC2020-database
     unzip '*.zip'
