@@ -415,17 +415,6 @@ class Model(nn.Module):
             predicted = predicted.transpose(1, 2)
 
 
-            # step-by-step loop for autoregressive decoding
-            # for t, encoder_state in enumerate(encoder_states.transpose(0, 1)):
-            #     concat = torch.cat([encoder_state, self.prenet(prev_out)], dim=1) # each encoder_state has shape (B, hidden_dim)
-            #     for i, lstmp in enumerate(self.lstmps):
-            #         lstmp_input = concat if i == 0 else z_list[i-1]
-            #         z_list[i], c_list[i] = lstmp(lstmp_input, z_list[i], c_list[i])
-            #     predicted_list += [self.proj(z_list[-1]).view(B, self.output_dim, -1)] # projection is done here to ensure output dim
-            #     prev_out = targets[t] if targets is not None else predicted_list[-1].squeeze(-1) # targets not None = teacher-forcing
-            #     prev_out = self.normalize(prev_out) # apply normalization
-            # predicted = torch.cat(predicted_list, dim=2)
-            # predicted = predicted.transpose(1, 2)  # (B, hidden_dim, Lmax) -> (B, Lmax, hidden_dim)
         else:
             predicted = encoder_states
             for i, lstmp in enumerate(self.lstmps):
